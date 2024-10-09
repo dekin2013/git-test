@@ -1,0 +1,15 @@
+#!/bin/bash
+clear
+du --apparent-size --block-size=1  "/home/user/file"
+fileName="/home/user/file"
+mfs=$(du --apparent-size --block-size=1  "$fileName" | awk '{ print $1}')
+echo "$fileName size = ${mfs}"
+
+
+du -ch -Bm --max-depth=1 | sort -nr | head -n11
+echo "Вывести оставшееся содержимое?Y/N"
+read bool
+if [ $bool = Y ]; then
+    du -csh -Bm --max-depth=1 | sort -nr | more +12
+fi
+
